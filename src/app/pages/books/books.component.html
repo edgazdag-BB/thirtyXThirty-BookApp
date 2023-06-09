@@ -1,0 +1,9 @@
+<div class="flex">
+  <app-book-list class="list-component"
+    [displayedColumns]="displayedColumns"
+    [books]="(books$ | async) ?? []"
+    (addBook)="addBook()"
+    (updateBook)="updateBook($event)"
+    (deleteBook)="deleteBook($event)"
+    ></app-book-list>
+</div>

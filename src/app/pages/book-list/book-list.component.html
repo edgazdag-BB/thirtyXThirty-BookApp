@@ -1,0 +1,39 @@
+<div class="flex">
+  <button mat-raised-button color="primary" (click)="addBook.emit()">
+    Add Book
+  </button>
+</div>
+<br>
+<table mat-table *ngIf="books" [dataSource]="books" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let book"> {{ book.id }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let book"> {{ book.title }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef> Author </th>
+    <td mat-cell *matCellDef="let book"> {{ book.authorFName }} {{ book.authorLName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef> Year Published </th>
+    <td mat-cell *matCellDef="let book"> {{ book.yearPublished }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let book;">
+      <button mat-stroked-button color="warn" (click)="delete($event, book.id)">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr class="data-row" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="updateBook.emit(row)"></tr>
+</table>
